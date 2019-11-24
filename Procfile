@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath src api.wsgi --log-file -
+web: gunicorn --pythonpath src shorten_link.wsgi --log-file -
