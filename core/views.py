@@ -25,7 +25,7 @@ def link(request):
 
             # redirect to a new URL:
             
-            full_path = "http://" + request.get_host()
+            full_path = "https://" + request.get_host()
             return HttpResponseRedirect('/?url_registered=' + (full_path + "/" + shorten.shorten_url) )
             # return render(request, 'home.html', {'form': form, "url_registered": (full_path + "/" + shorten.shorten_url) })
     else:
