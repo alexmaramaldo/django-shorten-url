@@ -1,6 +1,5 @@
 django
 gunicorn
-django-heroku
 django-connection-url
 mysqlclient==1.4.6
 short_url==1.2.2

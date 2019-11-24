@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from core import views as core_views
-from core.views import redirect_view
+from django.views.decorators.csrf import csrf_exempt
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'/', core_views.link, name='home'),
     path('', core_views.link),
-    path('<slug:tiny>/', view=redirect_view, name='short_url_view')
+    path('register-url', csrf_exempt(core_views.register_link)),
+    path('<slug:tiny>/', view=core_views.redirect_view, name='short_url_view')
 ]

@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-import connection_url
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +25,7 @@ SECRET_KEY = 'pmq1-c*-2z!xn%r1p#8otj3&ii9+=wrse_p0@q4mf-jjhspyz!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['test-django-shorten.herokuapp.com']
+ALLOWED_HOSTS = ['test-django-shorten.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -78,7 +75,14 @@ WSGI_APPLICATION = 'shorten_link.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': connection_url.config(os.getenv("JAWSDB_MARIA_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test_django',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'root',
+    }
 }
 
 

@@ -10,31 +10,29 @@ import short_url
 from django.apps import apps
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.http import JsonResponse
+
 
 def link(request):
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = LinkForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            url = form.cleaned_data.get('url')
-            shorten = Link(url=url)
-            shorten.save()
-            shorten.shorten_url = (short_url.encode_url(shorten.id))
-            shorten.save()
-
-            # redirect to a new URL:
-            
-            full_path = "https://" + request.get_host()
-            return HttpResponseRedirect('/?url_registered=' + (full_path + "/" + shorten.shorten_url) )
-            # return render(request, 'home.html', {'form': form, "url_registered": (full_path + "/" + shorten.shorten_url) })
-    else:
-        form = LinkForm()
+    form = LinkForm()
     return render(request, 'home.html', {'form': form, "url_registered": ""})
 
+def register_link(request):
+    if request.method == 'POST':
+        url = request.POST['url']
+        shorten = Link(url=url)
+        shorten.save()
+        shorten.shorten_url = (short_url.encode_url(shorten.id))
+        shorten.save()
+
+        full_path = "https://" + request.get_host() + "/" + shorten.shorten_url 
+        data = {
+            'url_registered': full_path,
+        }
+        return JsonResponse(data, safe=False)
+        
 
 def redirect_view(request, tiny):
-    # model = apps.get_model('MYAPP', 'MYBLOG')
     try:
         id = short_url.decode_url(tiny)
     except ValueError:
