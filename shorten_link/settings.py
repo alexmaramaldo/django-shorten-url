@@ -75,14 +75,7 @@ WSGI_APPLICATION = 'shorten_link.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_django',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'root',
-    }
+    'default': connection_url.config(os.getenv("JAWSDB_MARIA_URL"))
 }
 
 
