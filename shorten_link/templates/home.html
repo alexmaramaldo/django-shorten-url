@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Your link to registrate</h2>
+<form action="/" method="post">
+  {% csrf_token %} {{ form }}
+  <input type="submit" value="REGISTER" />
+</form>
+{% if request.GET.url_registered %}
+<h1>Your Shorten URL is:</h1>
+<a href="{{ request.GET.url_registered }}">{{ request.GET.url_registered }}</a>
+{% endif %} {% endblock %}
