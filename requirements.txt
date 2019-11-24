@@ -1,2 +1,5 @@
+django
+gunicorn
+django-heroku
 mysqlclient==1.4.6
 short_url==1.2.2
