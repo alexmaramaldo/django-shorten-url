@@ -25,7 +25,7 @@ SECRET_KEY = 'pmq1-c*-2z!xn%r1p#8otj3&ii9+=wrse_p0@q4mf-jjhspyz!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['test-django-shorten.herokuapp.com']
 
 
 # Application definition
