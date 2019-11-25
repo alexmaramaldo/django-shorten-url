@@ -31,7 +31,12 @@
           function(data) {
             result = data.url_registered;
             $("#result").html(
-              "<h1>Your Shorten LINK is: </h1>" + "<p>" + result + "</p>"
+              "<h1>Your Shorten LINK is: </h1>" +
+                "<a href='" +
+                result +
+                "'>" +
+                result +
+                "</a>"
             );
             $("#url").val("");
           }
